@@ -1,11 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Send, Music, ShoppingCart, MessageSquare, Headphones, Bot, Package } from "lucide-react";
+import { Send, Music, ShoppingCart, MessageSquare, Headphones, Bot, Package, Cpu } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 import "../demo.index.css";
-
-// This can be configured based on environment
-const ADMIN_URL = import.meta.env.VITE_ADMIN_URL || "http://localhost:3001";
 
 function AboutPage() {
   return (
@@ -18,6 +15,63 @@ function AboutPage() {
           Experience the future of online shopping with our AI-powered music store.
           Simply describe what you want, and our intelligent assistant will help you find and purchase your perfect instrument.
         </p>
+
+        <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 mb-12">
+          <div className="flex items-center gap-3 mb-6">
+            <Cpu className="w-8 h-8 text-emerald-600" />
+            <h2 className="text-2xl font-semibold">Powered by Model Context Protocol (MCP)</h2>
+          </div>
+          <div className="space-y-8">
+            <p className="text-gray-600 text-lg">
+              Our AI assistant is built using the Model Context Protocol (MCP), a cutting-edge framework that enables seamless integration between AI models and backend services. This powerful technology stack creates a truly intelligent shopping experience.
+            </p>
+
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <Bot className="w-6 h-6 text-emerald-600 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-emerald-600 text-lg mb-2">How AI Assistant Works with MCP</h3>
+                  <div className="space-y-4">
+                    <div className="bg-white p-4 rounded-lg border border-gray-100">
+                      <h4 className="font-medium text-gray-800 mb-2">1. Natural Language Processing</h4>
+                      <p className="text-gray-600 text-sm">
+                        The AI assistant (Claude 3.5 Sonnet) processes your natural language requests, understanding your preferences and requirements for guitars.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-4 rounded-lg border border-gray-100">
+                      <h4 className="font-medium text-gray-800 mb-2">2. Product Search and Matching</h4>
+                      <p className="text-gray-600 text-sm">
+                        Using MCP tools, the AI queries the Products API to find guitars matching your criteria, including specifications, price range, and features.
+                      </p>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-lg border border-gray-100">
+                      <h4 className="font-medium text-gray-800 mb-2">3. Inventory Verification</h4>
+                      <p className="text-gray-600 text-sm">
+                        The AI checks product availability through the Fulfillment API, ensuring the guitars you're interested in are in stock.
+                      </p>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-lg border border-gray-100">
+                      <h4 className="font-medium text-gray-800 mb-2">4. Order Processing</h4>
+                      <p className="text-gray-600 text-sm">
+                        When you're ready to purchase, the AI uses MCP to submit your order to the Fulfillment API, handling all the necessary details like customer information and product selection.
+                      </p>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-lg border border-gray-100">
+                      <h4 className="font-medium text-gray-800 mb-2">5. Real-time Updates</h4>
+                      <p className="text-gray-600 text-sm">
+                        Throughout the process, MCP maintains a persistent connection, allowing the AI to provide real-time updates about order status and any changes in product availability.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="bg-emerald-50 rounded-xl p-8 mb-12">
           <p className="text-lg text-gray-700 mb-6">
@@ -60,39 +114,19 @@ function AboutPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <ShoppingCart className="w-6 h-6 text-emerald-600" />
-            <h2 className="text-xl font-semibold">Easy Ordering</h2>
-          </div>
-          <p className="text-gray-600 mb-4">
-            Ordering is as simple as having a conversation! Just tell our AI assistant which guitar you want, 
-            and it will handle the entire ordering process for you. No complicated forms or checkout steps required.
-          </p>
-          <div className="flex justify-center">
-            <Link
-              to="/chat"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+        <div className="text-center mt-12 pt-8 border-t border-gray-100">
+          <p className="text-gray-500 text-sm">
+            Developed with ❤️ by{" "}
+            <a
+              href="https://www.linkedin.com/in/kota-srichandan/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-600 font-medium hover:text-emerald-700 hover:underline transition-colors"
             >
-              <MessageSquare className="w-5 h-5" />
-              Order Through Chat
-            </Link>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-semibold mb-4">Order Tracking</h2>
-          <p className="text-gray-600 mb-4">
-            After placing your order through the AI assistant, you can track your order status through our admin portal.
+              Srichandan Kota
+            </a>{" "}
+            using the magic of MCP
           </p>
-          <a
-            href={ADMIN_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
-          >
-            View Orders
-          </a>
         </div>
       </div>
     </div>

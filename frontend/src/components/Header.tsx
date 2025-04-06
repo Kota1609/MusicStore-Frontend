@@ -1,8 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Guitar, Package } from "lucide-react";
+import { Guitar } from "lucide-react";
 import AIAssistant from "./AIAssistant";
-
-const ADMIN_URL = import.meta.env.VITE_ADMIN_URL || "http://localhost:3001";
 
 export default function Header() {
   return (
@@ -24,29 +22,20 @@ export default function Header() {
               Home
             </Link>
             <Link
-              to="/chat"
-              className="text-gray-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-            >
-              Chat
-            </Link>
-            <Link
               to="/about"
               className="text-gray-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
             >
               About
             </Link>
+            <Link
+              to="/orders"
+              className="text-gray-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              My Orders
+            </Link>
           </nav>
 
-          <div className="flex items-center space-x-4">
-            <a
-              href={`${ADMIN_URL}/orders`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-900 text-white hover:bg-gray-800 transition-colors"
-            >
-              <Package className="w-4 h-4" />
-              <span className="text-sm font-medium">Orders</span>
-            </a>
+          <div className="flex items-center">
             <AIAssistant />
           </div>
         </div>
