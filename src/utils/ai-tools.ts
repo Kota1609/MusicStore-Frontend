@@ -3,8 +3,6 @@ import { z } from "zod";
 
 import { fetchGuitars } from "./apis";
 
-const MCP_ORDER_SERVER_URL = import.meta.env.VITE_MCP_ORDER_SERVER_URL || "http://localhost:8081";
-
 const mcpClient = await experimental_createMCPClient({
   transport: {
     type: "sse",
