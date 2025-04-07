@@ -14,5 +14,24 @@ export default defineConfig({
       }),
       tailwindcss(),
     ],
+    build: {
+      target: 'esnext',
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        target: 'esnext',
+        supported: {
+          'top-level-await': true,
+        },
+      },
+    },
+  },
+  server: {
+    esbuild: {
+      target: 'esnext',
+      supported: {
+        'top-level-await': true,
+      },
+    },
   },
 })

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import { Send, Bot, User } from "lucide-react";
+import { Send } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
@@ -18,11 +18,12 @@ function InitalLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex-1 flex items-center justify-center px-4">
       <div className="text-center max-w-3xl mx-auto w-full">
-        <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-transparent bg-clip-text">
-          AI Shopping Assistant
+        <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-orange-500 to-red-600 text-transparent bg-clip-text uppercase">
+          <span className="text-white">TanStack</span> Chat
         </h1>
-        <p className="text-gray-600 mb-6 w-2/3 mx-auto text-lg">
-          Ask me anything about our guitars, and I'll help you find the perfect one for you.
+        <p className="text-gray-400 mb-6 w-2/3 mx-auto text-lg">
+          You can ask me about anything, I might or might not have a good
+          answer, but you can still ask.
         </p>
         {children}
       </div>
@@ -32,8 +33,8 @@ function InitalLayout({ children }: { children: React.ReactNode }) {
 
 function ChattingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="absolute bottom-0 right-0 left-0 bg-white/90 backdrop-blur-sm border-t border-emerald-100">
-      <div className="max-w-3xl mx-auto w-full px-4 py-4">{children}</div>
+    <div className="absolute bottom-0 right-0 left-64 bg-gray-900/80 backdrop-blur-sm border-t border-orange-500/10">
+      <div className="max-w-3xl mx-auto w-full px-4 py-3">{children}</div>
     </div>
   );
 }
@@ -60,23 +61,23 @@ function Messages({ messages }: { messages: Array<UIMessage> }) {
             key={id}
             className={`py-6 ${
               role === "assistant"
-                ? "bg-gradient-to-r from-emerald-50 to-emerald-100/50"
+                ? "bg-gradient-to-r from-orange-500/5 to-red-600/5"
                 : "bg-transparent"
             }`}
           >
             <div className="flex items-start gap-4 max-w-3xl mx-auto w-full">
               {role === "assistant" ? (
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 flex items-center justify-center text-sm font-medium text-white flex-shrink-0 shadow-sm">
-                  <Bot className="w-5 h-5" />
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-orange-500 to-red-600 mt-2 flex items-center justify-center text-sm font-medium text-white flex-shrink-0">
+                  AI
                 </div>
               ) : (
-                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-sm font-medium text-gray-700 flex-shrink-0 shadow-sm">
-                  <User className="w-5 h-5" />
+                <div className="w-8 h-8 rounded-lg bg-gray-700 flex items-center justify-center text-sm font-medium text-white flex-shrink-0">
+                  Y
                 </div>
               )}
               <div className="flex-1 min-w-0">
                 <ReactMarkdown
-                  className="prose max-w-none prose-emerald"
+                  className="prose dark:prose-invert max-w-none"
                   rehypePlugins={[
                     rehypeRaw,
                     rehypeSanitize,
@@ -97,62 +98,58 @@ function Messages({ messages }: { messages: Array<UIMessage> }) {
 
 function ChatPage() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
-    api: genAIResponse,
+    initialMessages: [],
+    fetch: (_url, options) => {
+      const { messages } = JSON.parse(options!.body! as string);
+      return genAIResponse({
+        data: {
+          messages,
+        },
+      });
+    },
   });
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
+  const Layout = messages.length ? ChattingLayout : InitalLayout;
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
-      {messages.length === 0 ? (
-        <InitalLayout>
-          <form
-            onSubmit={handleSubmit}
-            className="flex items-center gap-2 max-w-xl mx-auto w-full"
-          >
-            <input
-              ref={inputRef}
-              value={input}
-              onChange={handleInputChange}
-              placeholder="Ask me anything about our guitars..."
-              className="flex-1 px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
-            />
-            <button
-              type="submit"
-              className="px-4 py-3 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
-            >
-              <Send className="w-5 h-5" />
-            </button>
-          </form>
-        </InitalLayout>
-      ) : (
-        <>
-          <Messages messages={messages} />
-          <ChattingLayout>
-            <form onSubmit={handleSubmit} className="flex items-center gap-2">
-              <input
-                ref={inputRef}
+    <div className="relative flex h-[calc(100vh-32px)] bg-gray-900">
+      <div className="flex-1 flex flex-col">
+        <Messages messages={messages} />
+
+        <Layout>
+          <form onSubmit={handleSubmit}>
+            <div className="relative max-w-xl mx-auto">
+              <textarea
                 value={input}
                 onChange={handleInputChange}
-                placeholder="Ask me anything about our guitars..."
-                className="flex-1 px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                placeholder="Type something clever (or don't, we won't judge)..."
+                className="w-full rounded-lg border border-orange-500/20 bg-gray-800/50 pl-4 pr-12 py-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-transparent resize-none overflow-hidden shadow-lg"
+                rows={1}
+                style={{ minHeight: "44px", maxHeight: "200px" }}
+                onInput={(e) => {
+                  const target = e.target as HTMLTextAreaElement;
+                  target.style.height = "auto";
+                  target.style.height =
+                    Math.min(target.scrollHeight, 200) + "px";
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSubmit(e);
+                  }
+                }}
               />
               <button
                 type="submit"
-                className="px-4 py-3 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
+                disabled={!input.trim()}
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-orange-500 hover:text-orange-400 disabled:text-gray-500 transition-colors focus:outline-none"
               >
-                <Send className="w-5 h-5" />
+                <Send className="w-4 h-4" />
               </button>
-            </form>
-          </ChattingLayout>
-        </>
-      )}
+            </div>
+          </form>
+        </Layout>
+      </div>
     </div>
   );
 }
