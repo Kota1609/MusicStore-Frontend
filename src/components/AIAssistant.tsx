@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useStore } from "@tanstack/react-store";
-import { Send, X } from "lucide-react";
+import { Send, Bot, User, MessageSquare, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
@@ -27,37 +27,41 @@ function Messages({ messages }: { messages: Array<UIMessage> }) {
 
   if (!messages.length) {
     return (
-      <div className="flex-1 flex items-center justify-center text-gray-400 text-sm">
-        Ask me anything! I'm here to help.
+      <div className="flex-1 flex items-center justify-center">
+        <div className="text-center p-6 rounded-lg bg-emerald-50/50">
+          <Bot className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Shopping Assistant</h3>
+          <p className="text-gray-600">Ask me anything about our guitars! I'm here to help you find the perfect one.</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div ref={messagesContainerRef} className="flex-1 overflow-y-auto">
+    <div ref={messagesContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
       {messages.map(({ id, role, content, parts }) => (
         <div
           key={id}
-          className={`py-3 ${
+          className={`rounded-lg p-4 ${
             role === "assistant"
-              ? "bg-gradient-to-r from-orange-500/5 to-red-600/5"
-              : "bg-transparent"
+              ? "bg-gradient-to-r from-emerald-50 to-emerald-100/50"
+              : "bg-white shadow-sm"
           }`}
         >
           {content.length > 0 && (
-            <div className="flex items-start gap-2 px-4">
+            <div className="flex items-start gap-3">
               {role === "assistant" ? (
-                <div className="w-6 h-6 rounded-lg bg-gradient-to-r from-orange-500 to-red-600 flex items-center justify-center text-xs font-medium text-white flex-shrink-0">
-                  AI
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 flex items-center justify-center text-white flex-shrink-0 shadow-sm">
+                  <Bot className="w-4 h-4" />
                 </div>
               ) : (
-                <div className="w-6 h-6 rounded-lg bg-gray-700 flex items-center justify-center text-xs font-medium text-white flex-shrink-0">
-                  Y
+                <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 flex-shrink-0 shadow-sm">
+                  <User className="w-4 h-4" />
                 </div>
               )}
               <div className="flex-1 min-w-0">
                 <ReactMarkdown
-                  className="prose dark:prose-invert max-w-none prose-sm"
+                  className="prose max-w-none prose-emerald prose-sm"
                   rehypePlugins={[
                     rehypeRaw,
                     rehypeSanitize,
@@ -78,7 +82,7 @@ function Messages({ messages }: { messages: Array<UIMessage> }) {
             .map((toolCall) => (
               <div
                 key={toolCall.toolInvocation.toolName}
-                className="max-w-[80%] mx-auto"
+                className="max-w-[80%] mx-auto mt-4"
               >
                 <GuitarRecommendation id={toolCall.toolInvocation.args.id} />
               </div>
@@ -101,70 +105,58 @@ export default function AIAssistant() {
         },
       });
     },
-    onToolCall: (call) => {
-      if (call.toolCall.toolName === "recommendGuitar") {
-        return "Handled by the UI";
-      }
-    },
   });
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
-    <div className="relative z-50">
+    <div className="relative">
       <button
         onClick={() => showAIAssistant.setState((state) => !state)}
-        className="flex items-center gap-2 px-3 py-1 rounded-lg bg-gradient-to-r from-orange-500 to-red-600 text-white hover:opacity-90 transition-opacity"
+        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 transition-colors"
       >
-        <div className="w-5 h-5 rounded-lg bg-white/20 flex items-center justify-center text-xs font-medium">
-          AI
-        </div>
-        AI Assistant
+        <MessageSquare className="w-4 h-4" />
+        <span className="text-sm font-medium">AI Assistant</span>
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-[700px] h-[600px] bg-gray-900 rounded-lg shadow-xl border border-orange-500/20 flex flex-col">
-          <div className="flex items-center justify-between p-3 border-b border-orange-500/20">
-            <h3 className="font-semibold text-white">AI Assistant</h3>
+        <div className="absolute top-full right-0 mt-2 w-[500px] h-[600px] bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col">
+          <div className="flex items-center justify-between p-4 border-b border-gray-100">
+            <div className="flex items-center gap-2">
+              <Bot className="w-5 h-5 text-emerald-600" />
+              <h3 className="font-semibold text-gray-900">AI Shopping Assistant</h3>
+            </div>
             <button
               onClick={() => showAIAssistant.setState((state) => !state)}
-              className="text-gray-400 hover:text-white transition-colors"
+              className="p-1 rounded-full hover:bg-gray-100 transition-colors"
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5 text-gray-500" />
             </button>
           </div>
 
           <Messages messages={messages} />
 
-          <div className="p-3 border-t border-orange-500/20">
-            <form onSubmit={handleSubmit}>
-              <div className="relative">
-                <textarea
-                  value={input}
-                  onChange={handleInputChange}
-                  placeholder="Type your message..."
-                  className="w-full rounded-lg border border-orange-500/20 bg-gray-800/50 pl-3 pr-10 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-transparent resize-none overflow-hidden"
-                  rows={1}
-                  style={{ minHeight: "36px", maxHeight: "120px" }}
-                  onInput={(e) => {
-                    const target = e.target as HTMLTextAreaElement;
-                    target.style.height = "auto";
-                    target.style.height =
-                      Math.min(target.scrollHeight, 120) + "px";
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      handleSubmit(e);
-                    }
-                  }}
-                />
-                <button
-                  type="submit"
-                  disabled={!input.trim()}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-orange-500 hover:text-orange-400 disabled:text-gray-500 transition-colors focus:outline-none"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
-              </div>
+          <div className="p-4 border-t border-gray-100">
+            <form onSubmit={handleSubmit} className="flex items-center gap-2">
+              <input
+                ref={inputRef}
+                value={input}
+                onChange={handleInputChange}
+                placeholder="Ask me anything about our guitars..."
+                className="flex-1 px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-sm"
+              />
+              <button
+                type="submit"
+                className="p-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
+              >
+                <Send className="w-4 h-4" />
+              </button>
             </form>
           </div>
         </div>

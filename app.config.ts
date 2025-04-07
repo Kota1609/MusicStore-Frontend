@@ -28,9 +28,11 @@ export default defineConfig({
   },
   server: {
     esbuild: {
-      target: 'esnext',
-      supported: {
-        'top-level-await': true,
+      options: {
+        target: 'esnext',
+        supported: {
+          'top-level-await': true,
+        },
       },
     },
   },
