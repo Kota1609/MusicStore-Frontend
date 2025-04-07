@@ -15,10 +15,11 @@ const __dirname = path.dirname(__filename);
 // In production (Vercel sets NODE_ENV to "production"), skip loading .env.
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config({
-    path: '/Users/srichandankota/Desktop/mcp-client-and-server-main/.env',
+    path: '/Users/srichandankota/Desktop/mcp-client-and-server-main 2/apps/frontend/.env',
   });
   console.log('Loaded local .env from absolute path');
   console.log('ANTHROPIC_API_KEY =>', process.env.ANTHROPIC_API_KEY);
+  console.log('ANTHROPIC_API_KEY =>', process.env.VITE_MCP_ORDER_SERVER_URL)
 }
 
 export default createStartHandler({
