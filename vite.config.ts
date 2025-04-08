@@ -1,27 +1,27 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tsconfigPaths from 'vite-tsconfig-paths'
+import path from 'path'
 
 export default defineConfig({
-    plugins: [react(), tsconfigPaths()],
-    build: {
-        target: 'esnext',
-        rollupOptions: {
-            output: {
-                format: 'es',
-                manualChunks: {
-                    vendor: ['react', 'react-dom'],
-                    lucide: ['lucide-react'],
-                },
-            },
-        },
-    },
-    optimizeDeps: {
-        esbuildOptions: {
-            target: 'esnext',
-        },
-    },
+    plugins: [react()],
     ssr: {
         noExternal: ['lucide-react']
+    },
+    optimizeDeps: {
+        include: ['lucide-react']
+    },
+    resolve: {
+        alias: {
+            'lucide-react': path.resolve(__dirname, 'node_modules/lucide-react')
+        }
+    },
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    'lucide-react': ['lucide-react']
+                }
+            }
+        }
     }
-}) 
+})
