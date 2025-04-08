@@ -1,5 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useStore } from "@tanstack/react-store";
+import { Link } from "@tanstack/react-router";
 
 import { guitarList, showAIAssistant } from "../store/assistant";
 

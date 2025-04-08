@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Send, Music, ShoppingCart, MessageSquare, Headphones, Bot, Package, Cpu } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { showAIAssistant } from "../store/assistant";
 
 import "../demo.index.css";
 
@@ -80,13 +80,13 @@ function AboutPage() {
             and place your order - all through a natural conversation!
           </p>
           <div className="flex justify-center">
-            <Link
-              to="/chat"
+            <button
+              onClick={() => showAIAssistant.setState((state) => !state)}
               className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
             >
               <MessageSquare className="w-5 h-5" />
               Start Chatting with AI
-            </Link>
+            </button>
           </div>
         </div>
 

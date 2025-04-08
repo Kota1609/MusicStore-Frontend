@@ -1,5 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { fetchGuitars } from "../../utils/apis";
+import { showAIAssistant } from "../../store/assistant";
 
 export const Route = createFileRoute("/guitars/$guitarId")({
   component: RouteComponent,
@@ -31,8 +32,11 @@ function RouteComponent() {
           <div className="text-2xl font-bold text-emerald-600">
             ${guitar.price}
           </div>
-          <button className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2 rounded-lg transition-colors">
-            Add to Cart
+          <button
+            onClick={() => showAIAssistant.setState((state) => !state)}
+            className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2 rounded-lg transition-colors"
+          >
+            Chat with AI
           </button>
         </div>
       </div>
