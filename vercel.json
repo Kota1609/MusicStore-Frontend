@@ -3,11 +3,20 @@
     "builds": [
         {
             "src": "package.json",
-            "use": "@vercel/node",
+            "use": "@vercel/static-build",
             "config": {
                 "buildCommand": "NODE_OPTIONS='--experimental-json-modules' pnpm build",
                 "installCommand": "pnpm install",
-                "startCommand": "NODE_OPTIONS='--experimental-json-modules' pnpm start"
+                "outputDirectory": ".output"
+            }
+        },
+        {
+            "src": ".output/server/index.mjs",
+            "use": "@vercel/node",
+            "config": {
+                "includeFiles": [
+                    ".output/**"
+                ]
             }
         }
     ],
