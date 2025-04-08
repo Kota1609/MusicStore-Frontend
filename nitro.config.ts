@@ -1,7 +1,7 @@
 import { defineNitroConfig } from 'nitropack'
 
 export default defineNitroConfig({
-    preset: 'node-server',
+    preset: 'vercel',
     esbuild: {
         options: {
             target: 'esnext'
