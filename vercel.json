@@ -9,6 +9,15 @@
                 "installCommand": "pnpm install",
                 "outputDirectory": ".output"
             }
+        },
+        {
+            "src": ".output/server/index.mjs",
+            "use": "@vercel/node",
+            "config": {
+                "includeFiles": [
+                    ".output/**"
+                ]
+            }
         }
     ],
     "routes": [
