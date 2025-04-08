@@ -1,10 +1,16 @@
 {
     "version": 2,
     "framework": "nuxtjs",
-    "buildCommand": "NODE_OPTIONS='--experimental-json-modules' pnpm build",
-    "installCommand": "pnpm install",
-    "outputDirectory": ".output",
     "builds": [
+        {
+            "src": "package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "buildCommand": "NODE_OPTIONS='--experimental-json-modules' pnpm build",
+                "installCommand": "pnpm install",
+                "outputDirectory": ".output"
+            }
+        },
         {
             "src": ".output/server/index.mjs",
             "use": "@vercel/node",
