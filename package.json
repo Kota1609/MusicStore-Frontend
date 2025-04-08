@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "vinxi start",
-    "build": "pnpm install && pnpm add -D ts-node && NODE_OPTIONS='--loader ts-node/esm' vinxi build",
+    "build": "pnpm install && pnpm add -D ts-node && NODE_OPTIONS='--loader ts-node/esm --experimental-specifier-resolution=node' vinxi build",
     "serve": "vite preview",
     "test": "vitest run",
     "dev": "PORT=3000 vinxi dev"
