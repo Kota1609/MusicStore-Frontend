@@ -18,8 +18,15 @@ export default defineNitroConfig({
         '/**': {
             cors: true,
             headers: {
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Headers': '*'
             }
+        }
+    },
+    vercel: {
+        functions: {
+            maxDuration: 10
         }
     }
 }) 
