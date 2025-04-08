@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "framework": "nuxtjs",
+    "framework": "other",
     "builds": [
         {
             "src": "package.json",
@@ -9,15 +9,6 @@
                 "buildCommand": "NODE_OPTIONS='--experimental-json-modules' pnpm build",
                 "installCommand": "pnpm install",
                 "outputDirectory": ".output"
-            }
-        },
-        {
-            "src": ".output/server/index.mjs",
-            "use": "@vercel/node",
-            "config": {
-                "includeFiles": [
-                    ".output/**"
-                ]
             }
         }
     ],
