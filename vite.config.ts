@@ -11,6 +11,7 @@ export default defineConfig({
                 format: 'es',
                 manualChunks: {
                     vendor: ['react', 'react-dom'],
+                    lucide: ['lucide-react'],
                 },
             },
         },
@@ -20,4 +21,7 @@ export default defineConfig({
             target: 'esnext',
         },
     },
+    ssr: {
+        noExternal: ['lucide-react']
+    }
 }) 
