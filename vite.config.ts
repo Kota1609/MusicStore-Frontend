@@ -1,15 +1,11 @@
-// nuxt.config.ts
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-    esbuild: {
-        target: 'esnext',
-        supported: {
-            'top-level-await': true,
-        },
-    },
+    plugins: [react(), tsconfigPaths()],
     build: {
-        target: 'esnext',
+        target: 'es2022',
         rollupOptions: {
             output: {
                 format: 'es',
@@ -18,18 +14,7 @@ export default defineConfig({
     },
     optimizeDeps: {
         esbuildOptions: {
-            target: 'esnext',
-            supported: {
-                'top-level-await': true,
-            },
+            target: 'es2022',
         },
     },
-    server: {
-        esbuild: {
-            target: 'esnext',
-            supported: {
-                'top-level-await': true,
-            },
-        },
-    },
-})
+}); 

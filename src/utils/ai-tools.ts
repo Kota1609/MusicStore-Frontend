@@ -3,14 +3,15 @@ import { z } from "zod";
 
 import { fetchGuitars } from "./apis";
 
+const MCP_ORDER_SERVER_URL = import.meta.env.VITE_MCP_ORDER_SERVER_URL || "http://localhost:8081";
+
 const mcpClient = await experimental_createMCPClient({
   transport: {
     type: "sse",
-    url: `${import.meta.env.VITE_MCP_ORDER_SERVER_URL}/sse`,
+    url: `${MCP_ORDER_SERVER_URL}/sse`,
   },
   name: "Order Service",
 });
-
 
 const getProducts = tool({
   description: "Get all products from the database",

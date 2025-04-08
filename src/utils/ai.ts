@@ -22,7 +22,7 @@ You can purchase a product by using the purchase tool.
 After purchasing a product tell the customer they've made a great choice and their order will be processed soon and they will be playing their new guitar in no time.
 `;
 
-export const genAIResponse = createServerFn({ method: "POST", response: "raw" })
+const genAIResponse = createServerFn({ method: "POST", response: "raw" })
   .validator(
     (d: {
       messages: Array<Message>;
@@ -41,9 +41,8 @@ export const genAIResponse = createServerFn({ method: "POST", response: "raw" })
         content: msg.content.trim(),
       }));
 
-    const tools = await getTools();
-
     try {
+      const tools = await getTools();
       const result = streamText({
         model: anthropic("claude-3-5-sonnet-latest"),
         messages,
@@ -56,11 +55,12 @@ export const genAIResponse = createServerFn({ method: "POST", response: "raw" })
     } catch (error) {
       console.error("Error in genAIResponse:", error);
       if (error instanceof Error && error.message.includes("rate limit")) {
-        return { error: "Rate limit exceeded. Please try again in a moment." };
+        return JSON.stringify({ error: "Rate limit exceeded. Please try again in a moment." });
       }
-      return {
-        error:
-          error instanceof Error ? error.message : "Failed to get AI response",
-      };
+      return JSON.stringify({
+        error: error instanceof Error ? error.message : "Failed to get AI response"
+      });
     }
   });
+
+export { genAIResponse };
