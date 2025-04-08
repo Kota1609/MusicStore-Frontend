@@ -1,14 +1,13 @@
 {
   "name": "frontend",
   "private": true,
-  "type": "module",
   "engines": {
     "node": ">=18.0.0 <19.0.0",
     "pnpm": ">=6.0.0"
   },
   "scripts": {
     "start": "vinxi start",
-    "build": "pnpm install && pnpm add -D ts-node && NODE_OPTIONS='--experimental-specifier-resolution=node' vinxi build",
+    "build": "pnpm install && pnpm add -D ts-node && vinxi build",
     "serve": "vite preview",
     "test": "vitest run",
     "dev": "PORT=3000 vinxi dev"
