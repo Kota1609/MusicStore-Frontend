@@ -54,7 +54,6 @@ export const genAIResponse = createServerFn({ method: "POST", response: "raw" })
 
       return result.toDataStreamResponse();
     } catch (error) {
-      console.error("Error in genAIResponse:", error);
       if (error instanceof Error && error.message.includes("rate limit")) {
         return { error: "Rate limit exceeded. Please try again in a moment." };
       }

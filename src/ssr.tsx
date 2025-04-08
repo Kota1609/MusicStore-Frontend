@@ -17,8 +17,6 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config({
     path: '/Users/srichandankota/Desktop/mcp-client-and-server-main/.env',
   });
-  console.log('Loaded local .env from absolute path');
-  console.log('ANTHROPIC_API_KEY =>', process.env.ANTHROPIC_API_KEY);
 }
 
 export default createStartHandler({
