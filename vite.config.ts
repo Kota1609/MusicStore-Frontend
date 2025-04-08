@@ -1,10 +1,10 @@
-const { defineConfig } = require('vite');
-const react = require('@vitejs/plugin-react');
-const tsconfigPaths = require('vite-tsconfig-paths');
-const tailwindcss = require('tailwindcss');
-const autoprefixer = require('autoprefixer');
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tsconfigPaths from 'vite-tsconfig-paths'
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
 
-module.exports = defineConfig({
+export default defineConfig({
     plugins: [react(), tsconfigPaths()],
     build: {
         target: 'es2022',
@@ -27,4 +27,4 @@ module.exports = defineConfig({
             ],
         },
     },
-}); 
+}) 
