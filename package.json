@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "vinxi start",
-    "build": "NODE_OPTIONS='--experimental-json-modules' vinxi build",
+    "build": "NODE_OPTIONS='--experimental-json-modules' NITRO_PRESET=vercel vinxi build",
     "serve": "vite preview",
     "test": "vitest run",
     "dev": "PORT=3000 vinxi dev"
