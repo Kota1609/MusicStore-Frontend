@@ -7,6 +7,9 @@ export default defineConfig({
     appDirectory: 'src',
   },
   vite: {
+    build: {
+      target: 'esnext',
+    },
     plugins: [
       // this is the plugin that enables path aliases
       viteTsConfigPaths({

@@ -1,15 +1,11 @@
 import { defineNitroConfig } from 'nitropack'
 
 export default defineNitroConfig({
-    srcDir: 'src',
-    buildDir: '.output',
-    noPublicDir: false,
-    runtimeConfig: {
-        app: {
-            baseURL: '/',
-        },
+    preset: 'node-server',
+    esbuild: {
+        options: {
+            target: 'esnext'
+        }
     },
-    routeRules: {
-        '/**': { cors: true },
-    },
+    compatibilityDate: '2024-04-08'
 }) 
