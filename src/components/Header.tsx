@@ -1,6 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Guitar } from "lucide-react";
+import { Guitar } from "../utils/icons";
 import AIAssistant from "./AIAssistant";
+import { Suspense } from "react";
+
+function IconWrapper({ children }: { children: React.ReactNode }) {
+  return <Suspense fallback={<div className="w-8 h-8 bg-gray-200 animate-pulse" />}>{children}</Suspense>;
+}
 
 export default function Header() {
   return (
@@ -9,7 +14,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <Guitar className="h-8 w-8 text-emerald-600" />
+              <IconWrapper><Guitar className="h-8 w-8 text-emerald-600" /></IconWrapper>
               <span className="text-xl font-bold text-gray-900">Music Store</span>
             </Link>
           </div>

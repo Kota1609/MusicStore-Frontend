@@ -5,14 +5,9 @@ import path from 'path'
 export default defineConfig({
     plugins: [react()],
     ssr: {
-        noExternal: ['lucide-react']
-    },
-    optimizeDeps: {
-        include: ['lucide-react']
-    },
-    resolve: {
-        alias: {
-            'lucide-react': path.resolve(__dirname, 'node_modules/lucide-react')
+        noExternal: true,
+        optimizeDeps: {
+            include: ['lucide-react']
         }
     },
     build: {
@@ -22,6 +17,18 @@ export default defineConfig({
                     'lucide-react': ['lucide-react']
                 }
             }
+        },
+        commonjsOptions: {
+            include: [/node_modules/]
+        }
+    },
+    optimizeDeps: {
+        include: ['lucide-react'],
+        exclude: []
+    },
+    resolve: {
+        alias: {
+            'lucide-react': path.resolve(__dirname, 'node_modules/lucide-react')
         }
     }
 })

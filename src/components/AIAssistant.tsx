@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, Suspense } from "react";
 import { useStore } from "@tanstack/react-store";
-import { Send, Bot, User, MessageSquare, X } from "lucide-react";
+import { Send, Bot, User, MessageSquare, X } from "../utils/icons";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
@@ -14,6 +14,10 @@ import { showAIAssistant } from "../store/assistant";
 import GuitarRecommendation from "./GuitarRecommendation";
 
 import type { UIMessage } from "ai";
+
+function IconWrapper({ children }: { children: React.ReactNode }) {
+  return <Suspense fallback={<div className="w-4 h-4 bg-gray-200 animate-pulse" />}>{children}</Suspense>;
+}
 
 function Messages({ messages }: { messages: Array<UIMessage> }) {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -29,7 +33,7 @@ function Messages({ messages }: { messages: Array<UIMessage> }) {
     return (
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center p-6 rounded-lg bg-emerald-50/50">
-          <Bot className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
+          <IconWrapper><Bot className="w-12 h-12 text-emerald-600 mx-auto mb-4" /></IconWrapper>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Shopping Assistant</h3>
           <p className="text-gray-600">Ask me anything about our guitars! I'm here to help you find the perfect one.</p>
         </div>
@@ -52,11 +56,11 @@ function Messages({ messages }: { messages: Array<UIMessage> }) {
             <div className="flex items-start gap-3">
               {role === "assistant" ? (
                 <div className="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 flex items-center justify-center text-white flex-shrink-0 shadow-sm">
-                  <Bot className="w-4 h-4" />
+                  <IconWrapper><Bot className="w-4 h-4" /></IconWrapper>
                 </div>
               ) : (
                 <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 flex-shrink-0 shadow-sm">
-                  <User className="w-4 h-4" />
+                  <IconWrapper><User className="w-4 h-4" /></IconWrapper>
                 </div>
               )}
               <div className="flex-1 min-w-0">
@@ -121,7 +125,7 @@ export default function AIAssistant() {
         onClick={() => showAIAssistant.setState((state) => !state)}
         className="flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 transition-colors"
       >
-        <MessageSquare className="w-4 h-4" />
+        <IconWrapper><MessageSquare className="w-4 h-4" /></IconWrapper>
         <span className="text-sm font-medium">AI Assistant</span>
       </button>
 
@@ -129,14 +133,14 @@ export default function AIAssistant() {
         <div className="absolute top-full right-0 mt-2 w-[500px] h-[600px] bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col">
           <div className="flex items-center justify-between p-4 border-b border-gray-100">
             <div className="flex items-center gap-2">
-              <Bot className="w-5 h-5 text-emerald-600" />
+              <IconWrapper><Bot className="w-5 h-5 text-emerald-600" /></IconWrapper>
               <h3 className="font-semibold text-gray-900">AI Shopping Assistant</h3>
             </div>
             <button
               onClick={() => showAIAssistant.setState((state) => !state)}
               className="p-1 rounded-full hover:bg-gray-100 transition-colors"
             >
-              <X className="w-5 h-5 text-gray-500" />
+              <IconWrapper><X className="w-5 h-5 text-gray-500" /></IconWrapper>
             </button>
           </div>
 
@@ -155,7 +159,7 @@ export default function AIAssistant() {
                 type="submit"
                 className="p-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
               >
-                <Send className="w-4 h-4" />
+                <IconWrapper><Send className="w-4 h-4" /></IconWrapper>
               </button>
             </form>
           </div>
