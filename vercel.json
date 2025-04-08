@@ -3,11 +3,7 @@
     "builds": [
         {
             "src": "package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "buildCommand": "pnpm build",
-                "outputDirectory": ".output"
-            }
+            "use": "@vercel/node"
         }
     ],
     "routes": [
@@ -16,24 +12,21 @@
             "headers": {
                 "cache-control": "public, max-age=31536000, immutable"
             },
-            "dest": "/.output/public/_build/$1"
+            "dest": "/_build/$1"
         },
         {
             "src": "/assets/(.*)",
             "headers": {
                 "cache-control": "public, max-age=31536000, immutable"
             },
-            "dest": "/.output/public/assets/$1"
+            "dest": "/assets/$1"
         },
         {
             "handle": "filesystem"
         },
         {
             "src": "/(.*)",
-            "dest": "/.output/server/index.mjs"
+            "dest": "/"
         }
-    ],
-    "regions": [
-        "iad1"
     ]
 }
