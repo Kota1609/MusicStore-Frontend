@@ -47,5 +47,13 @@
                 "Access-Control-Allow-Headers": "*"
             }
         }
-    ]
+    ],
+    "git": {
+        "deploymentEnabled": {
+            "main": false
+        }
+    },
+    "github": {
+        "autoJobCancellation": false
+    }
 }
