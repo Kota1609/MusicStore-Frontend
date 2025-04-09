@@ -1,338 +1,104 @@
-Welcome to your new TanStack app! 
+# 🎸 AI-Powered Music Store
 
-# Getting Started
+<div align="center">
+  <img src="https://img.shields.io/badge/AI-Powered-FF6B6B?style=for-the-badge&logo=openai&logoColor=white" alt="AI Powered"/>
+  <img src="https://img.shields.io/badge/Claude-3.5-FF6B6B?style=for-the-badge" alt="Claude 3.5"/>
+  <img src="https://img.shields.io/badge/MCP-Enabled-FF6B6B?style=for-the-badge" alt="MCP Enabled"/>
+</div>
 
-To run this application:
+## 🌟 Live Demo
 
-```bash
-pnpm install
-pnpm start  
-```
+Experience the future of music shopping: [https://mcp-ai-music.vercel.app/](https://mcp-ai-music.vercel.app/)
 
-# Building For Production
+## 🤖 AI Shopping Experience
 
-To build this application for production:
+> "Describe what you want, and our intelligent assistant will find your perfect instrument."
 
-```bash
-pnpm build
-```
+Our revolutionary AI-powered shopping experience combines cutting-edge technology with personalized service. Powered by Claude 3.5 Sonnet and the Model Context Protocol (MCP), we offer a seamless, intelligent shopping journey.
 
-## Testing
+### 🧠 How Our AI Assistant Works
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+<div align="center">
+  <img src="https://img.shields.io/badge/Natural%20Language-Processing-FF6B6B?style=for-the-badge" alt="NLP"/>
+  <img src="https://img.shields.io/badge/Real-time-Updates-FF6B6B?style=for-the-badge" alt="Real-time"/>
+</div>
 
-```bash
-pnpm test
-```
+1. **Natural Language Processing**
+   - Understands your preferences and requirements
+   - Processes complex queries about guitars
+   - Provides human-like responses
 
-## Styling
+2. **Smart Product Matching**
+   - Searches through our extensive catalog
+   - Matches based on specifications and budget
+   - Provides personalized recommendations
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+3. **Inventory Management**
+   - Real-time stock verification
+   - Instant availability updates
+   - Seamless order processing
 
+4. **Order Processing**
+   - Secure transaction handling
+   - Automated order submission
+   - Real-time status updates
 
+## 🎨 Unique Product Collection
 
+<div align="center">
+  <img src="https://img.shields.io/badge/Exclusive-Collection-FF6B6B?style=for-the-badge" alt="Exclusive Collection"/>
+</div>
 
-## Shadcn
+| Instrument | Description | Price |
+|------------|-------------|-------|
+| 🏜️ Dune Guitar | Desert-inspired hollow body with custom glyph inlays | $599 |
+| 💻 Motherboard Guitar | Tech-inspired electric with LED lights | $649 |
+| 🏎️ Racing Guitar | Aerodynamic design for speed and precision | $679 |
+| 🧳 Steamer Trunk Guitar | Crafted from reclaimed antique luggage | $629 |
+| ⚙️ Steampunk Guitar | Victorian masterpiece with brass gears | $699 |
+| 🌊 Underwater Guitar | Ocean-themed with ethereal tones | $499 |
 
-Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
+## 🛠️ Tech Stack
 
-```bash
-pnpx shadcn@latest add button
-```
+<div align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel"/>
+  <img src="https://img.shields.io/badge/MCP-Framework-FF6B6B?style=for-the-badge" alt="MCP"/>
+</div>
 
+- **Frontend**: React.js
+- **Styling**: Modern CSS
+- **Deployment**: Vercel
+- **AI Integration**: Claude 3.5 Sonnet + MCP Framework
 
-# TanStack Chat Application
-
-Am example chat application built with TanStack Start, TanStack Store, and Claude AI.
-
-## .env Updates
-
-```env
-ANTHROPIC_API_KEY=your_anthropic_api_key
-```
-
-## ✨ Features
-
-### AI Capabilities
-- 🤖 Powered by Claude 3.5 Sonnet 
-- 📝 Rich markdown formatting with syntax highlighting
-- 🎯 Customizable system prompts for tailored AI behavior
-- 🔄 Real-time message updates and streaming responses (coming soon)
-
-### User Experience
-- 🎨 Modern UI with Tailwind CSS and Lucide icons
-- 🔍 Conversation management and history
-- 🔐 Secure API key management
-- 📋 Markdown rendering with code highlighting
-
-### Technical Features
-- 📦 Centralized state management with TanStack Store
-- 🔌 Extensible architecture for multiple AI providers
-- 🛠️ TypeScript for type safety
-
-## Architecture
-
-### Tech Stack
-- **Frontend Framework**: TanStack Start
-- **Routing**: TanStack Router
-- **State Management**: TanStack Store
-- **Styling**: Tailwind CSS
-- **AI Integration**: Anthropic's Claude API
-
-
-## Routing
-This project uses [TanStack Router](https://tanstack.com/router). The initial setup is a file based router. Which means that the routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add another a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you use the `<Outlet />` component.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-
-import { Link } from "@tanstack/react-router";
-
-export const Route = createRootRoute({
-  component: () => (
-    <>
-      <header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-        </nav>
-      </header>
-      <Outlet />
-      <TanStackRouterDevtools />
-    </>
-  ),
-})
-```
-
-The `<TanStackRouterDevtools />` component is not required so you can remove it if you don't want it in your layout.
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-const peopleRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/people",
-  loader: async () => {
-    const response = await fetch("https://swapi.dev/api/people");
-    return response.json() as Promise<{
-      results: {
-        name: string;
-      }[];
-    }>;
-  },
-  component: () => {
-    const data = peopleRoute.useLoaderData();
-    return (
-      <ul>
-        {data.results.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    );
-  },
-});
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-### React-Query
-
-React-Query is an excellent addition or alternative to route loading and integrating it into you application is a breeze.
-
-First add your dependencies:
+## 🚀 Getting Started
 
 ```bash
-pnpm add @tanstack/react-query @tanstack/react-query-devtools
+# Clone the repository
+git clone https://github.com/yourusername/music-store.git
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
 ```
 
-Next we'll need to create a query client and provider. We recommend putting those in `main.tsx`.
+## 🤝 Contributing
 
-```tsx
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+We welcome contributions! Please feel free to submit a Pull Request.
 
-// ...
+## 📄 License
 
-const queryClient = new QueryClient();
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-// ...
+## 📞 Contact
 
-if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
+For any inquiries or support, please reach out to us through the contact form on our website.
 
-  root.render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
-}
-```
+---
 
-You can also add TanStack Query Devtools to the root route (optional).
-
-```tsx
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-const rootRoute = createRootRoute({
-  component: () => (
-    <>
-      <Outlet />
-      <ReactQueryDevtools buttonPosition="top-right" />
-      <TanStackRouterDevtools />
-    </>
-  ),
-});
-```
-
-Now you can use `useQuery` to fetch your data.
-
-```tsx
-import { useQuery } from "@tanstack/react-query";
-
-import "./App.css";
-
-function App() {
-  const { data } = useQuery({
-    queryKey: ["people"],
-    queryFn: () =>
-      fetch("https://swapi.dev/api/people")
-        .then((res) => res.json())
-        .then((data) => data.results as { name: string }[]),
-    initialData: [],
-  });
-
-  return (
-    <div>
-      <ul>
-        {data.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default App;
-```
-
-You can find out everything you need to know on how to use React-Query in the [React-Query documentation](https://tanstack.com/query/latest/docs/framework/react/overview).
-
-## State Management
-
-Another common requirement for React applications is state management. There are many options for state management in React. TanStack Store provides a great starting point for your project.
-
-First you need to add TanStack Store as a dependency:
-
-```bash
-pnpm add @tanstack/store
-```
-
-Now let's create a simple counter in the `src/App.tsx` file as a demonstration.
-
-```tsx
-import { useStore } from "@tanstack/react-store";
-import { Store } from "@tanstack/store";
-import "./App.css";
-
-const countStore = new Store(0);
-
-function App() {
-  const count = useStore(countStore);
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-    </div>
-  );
-}
-
-export default App;
-```
-
-One of the many nice features of TanStack Store is the ability to derive state from other state. That derived state will update when the base state updates.
-
-Let's check this out by doubling the count using derived state.
-
-```tsx
-import { useStore } from "@tanstack/react-store";
-import { Store, Derived } from "@tanstack/store";
-import "./App.css";
-
-const countStore = new Store(0);
-
-const doubledStore = new Derived({
-  fn: () => countStore.state * 2,
-  deps: [countStore],
-});
-doubledStore.mount();
-
-function App() {
-  const count = useStore(countStore);
-  const doubledCount = useStore(doubledStore);
-
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-      <div>Doubled - {doubledCount}</div>
-    </div>
-  );
-}
-
-export default App;
-```
-
-We use the `Derived` class to create a new store that is derived from another store. The `Derived` class has a `mount` method that will start the derived store updating.
-
-Once we've created the derived store we can use it in the `App` component just like we would any other store using the `useStore` hook.
-
-You can find out everything you need to know on how to use TanStack Store in the [TanStack Store documentation](https://tanstack.com/store/latest).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
+<div align="center">
+  <h3>🎵 Where Technology Meets Music 🎵</h3>
+  <p>Experience the future of instrument shopping today!</p>
+</div> 
