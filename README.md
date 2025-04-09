@@ -94,7 +94,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 📞 Contact
 
-For any inquiries or support, please reach out to us through the contact form on our website.
+For any inquiries or support, please reach out to us through the contact form my portfolio website (https://srichandan-kota.vercel.app/).
 
 ---
 
