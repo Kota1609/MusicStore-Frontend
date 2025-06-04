@@ -10,6 +10,10 @@
 
 Experience the future of music shopping: [https://mcp-ai-music.vercel.app/](https://mcp-ai-music.vercel.app/)
 
+## 🌟 Video
+
+https://github.com/user-attachments/assets/336dbf4d-8f76-4fda-a576-0f0b29c0fc21
+
 ## 🤖 AI Shopping Experience
 
 > "Describe what you want, and our intelligent assistant will find your perfect instrument."
